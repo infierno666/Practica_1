@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios JS Modulares</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            color: #1f2937;
+        }
+
+        .exercise-view {
+            transition: all 0.3s ease-in-out;
+            transform: scale(0.95);
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+        }
+
+        .exercise-view.active {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Contenedor Principal de la Interfaz -->
+    <div id="main-interface" class="min-h-screen p-4 md:p-8 relative">
+        <header class="mb-8 p-4 bg-white shadow-lg rounded-xl">
+            <h1 class="text-3xl font-extrabold text-blue-600">🚀 Ejercicios de Fundamentos JavaScript & DOM</h1>
+            <p class="text-gray-600 mt-1">Selecciona un ejercicio para ver su implementación.</p>
+        </header>
+
+        <!-- Grid de Botones -->
+        <div id="exercise-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-10">
+            <!-- Los botones usan la función global showExercise, definida en js/main.js -->
+            <button onclick="showExercise('ejercicio1')"
+                class="p-4 bg-indigo-500 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-600 transform hover:scale-105 transition duration-300">E1:
+                Calculadora</button>
+            <button onclick="showExercise('ejercicio2')"
+                class="p-4 bg-purple-500 text-white font-semibold rounded-lg shadow-md hover:bg-purple-600 transform hover:scale-105 transition duration-300">E2:
+                Conjetura de Collatz</button>
+            <button onclick="showExercise('ejercicio3')"
+                class="p-4 bg-fuchsia-500 text-white font-semibold rounded-lg shadow-md hover:bg-fuchsia-600 transform hover:scale-105 transition duration-300">E3:
+                Condicionales</button>
+            <button onclick="showExercise('ejercicio4')"
+                class="p-4 bg-pink-500 text-white font-semibold rounded-lg shadow-md hover:bg-pink-600 transform hover:scale-105 transition duration-300">E4:
+                Análisis de Array</button>
+            <button onclick="showExercise('ejercicio5')"
+                class="p-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transform hover:scale-105 transition duration-300">E5:
+                Info DOM</button>
+            <button onclick="showExercise('ejercicio6')"
+                class="p-4 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transform hover:scale-105 transition duration-300">E6:
+                Mostrar/Ocultar</button>
+            <button onclick="showExercise('ejercicio7')"
+                class="p-4 bg-amber-500 text-white font-semibold rounded-lg shadow-md hover:bg-amber-600 transform hover:scale-105 transition duration-300">E7:
+                Añadir Nodos</button>
+            <button onclick="showExercise('ejercicio8')"
+                class="p-4 bg-yellow-500 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-600 transform hover:scale-105 transition duration-300">E8:
+                Colapsables</button>
+            <button onclick="showExercise('ejercicio9')"
+                class="p-4 bg-lime-500 text-white font-semibold rounded-lg shadow-md hover:bg-lime-600 transform hover:scale-105 transition duration-300">E9:
+                Eventos Ratón/Teclado</button>
+            <button onclick="showExercise('ejercicio10')"
+                class="p-4 bg-emerald-500 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-600 transform hover:scale-105 transition duration-300">E10:
+                Análisis de Texto</button>
+            <button onclick="showExercise('ejercicio11')"
+                class="p-4 bg-teal-500 text-white font-semibold rounded-lg shadow-md hover:bg-teal-600 transform hover:scale-105 transition duration-300">E11:
+                Zonas de Pantalla</button>
+            <button onclick="showExercise('ejercicio12')"
+                class="p-4 bg-cyan-500 text-white font-semibold rounded-lg shadow-md hover:bg-cyan-600 transform hover:scale-105 transition duration-300">E12:
+                Formulario</button>
+        </div>
+        <!-- Fin Grid de Botones -->
+
+        <div id="exercise-views-container">
+            <!-- Vistas de Ejercicios (Simulan los modales) -->
+
+            <!-- E1: Calculadora -->
+            <div id="ejercicio1" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-indigo-500">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">1. Calculadora Simple</h2>
+                    <p class="text-gray-600 mb-4">Suma dos números ingresados.</p>
+                    <input type="number" id="e1_num1" placeholder="Primer número"
+                        class="w-full p-3 border rounded-lg mb-2">
+                    <input type="number" id="e1_num2" placeholder="Segundo número"
+                        class="w-full p-3 border rounded-lg mb-4">
+                    <button id="e1_calculate" class="w-full bg-indigo-600 text-white p-3 rounded-lg font-bold">Calcular
+                        Suma</button>
+                    <p id="e1_result" class="mt-4 text-lg font-medium p-3 bg-indigo-50 rounded-lg">Resultado: -</p>
+                    <button onclick="hideExercise()" class="mt-6 text-indigo-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+            <!-- E2: Conjetura de Collatz -->
+            <div id="ejercicio2" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-purple-500">
+                    <h2 class="text-2xl font-bold mb-4 text-purple-700">2. Conjetura de Collatz</h2>
+                    <input type="number" id="e2_input" placeholder="Ingresa un número inicial"
+                        class="w-full p-3 border rounded-lg mb-4">
+                    <button id="e2_calculate" class="w-full bg-purple-600 text-white p-3 rounded-lg font-bold">Generar
+                        Secuencia</button>
+                    <div id="e2_sequence" class="mt-4 p-3 bg-purple-50 rounded-lg border text-sm overflow-x-auto">-
+                    </div>
+                    <button onclick="hideExercise()" class="mt-6 text-purple-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+            <!-- E3: Condicionales -->
+            <div id="ejercicio3" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-fuchsia-500">
+                    <h2 class="text-2xl font-bold mb-4 text-fuchsia-700">3. Análisis Condicional</h2>
+                    <input type="number" id="e3_input" placeholder="Ingresa un número"
+                        class="w-full p-3 border rounded-lg mb-4">
+                    <button id="e3_check" class="w-full bg-fuchsia-600 text-white p-3 rounded-lg font-bold">Analizar
+                        Número</button>
+                    <p id="e3_result" class="mt-4 text-lg font-medium p-3 bg-fuchsia-50 rounded-lg">Estado: -</p>
+                    <button onclick="hideExercise()" class="mt-6 text-fuchsia-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+            <!-- E4: Análisis de Array -->
+            <div id="ejercicio4" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-pink-500">
+                    <h2 class="text-2xl font-bold mb-4 text-pink-700">4. Análisis de Array</h2>
+                    <p class="text-gray-600 mb-4">Array de ejemplo: [10, 20, 35, 15, 5]</p>
+                    <button id="e4_analyze" class="w-full bg-pink-600 text-white p-3 rounded-lg font-bold">Ejecutar
+                        Análisis</button>
+                    <div class="mt-4 p-3 bg-pink-50 rounded-lg border space-y-2">
+                        <p id="e4_sum" class="font-medium">Suma: -</p>
+                        <p id="e4_average" class="font-medium">Promedio: -</p>
+                    </div>
+                    <button onclick="hideExercise()" class="mt-6 text-pink-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+            <!-- E5: Info DOM -->
+            <div id="ejercicio5" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500">
+                    <h2 class="text-2xl font-bold mb-4 text-red-700">5. Información del DOM y Ventana</h2>
+                    <button id="e5_refresh"
+                        class="w-full bg-red-600 text-white p-3 rounded-lg font-bold mb-4">Actualizar
+                        Información</button>
+                    <div class="p-3 bg-red-50 rounded-lg border space-y-2">
+                        <p id="e5_width" class="font-medium">Ancho de la Ventana: -</p>
+                        <p id="e5_height" class="font-medium">Alto de la Ventana: -</p>
+                        <p id="e5_url" class="text-sm font-medium break-all">URL Actual: -</p>
+                    </div>
+                    <button onclick="hideExercise()" class="mt-6 text-red-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+            <!-- E6: Mostrar/Ocultar texto -->
+            <div id="ejercicio6" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
+                    <h2 class="text-2xl font-bold mb-4 text-orange-700">6. Mostrar / Ocultar Texto</h2>
+                    <button id="e6_toggle" class="w-full bg-orange-600 text-white p-3 rounded-lg font-bold mb-4">Ocultar
+                        Texto</button>
+                    <p id="e6_text" class="p-4 bg-orange-50 rounded-lg border transition-opacity duration-300">Este
+                        texto se puede ocultar y mostrar.</p>
+                    <button onclick="hideExercise()" class="mt-6 text-orange-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+            <!-- E7: Añadir nodos a lista -->
+            <div id="ejercicio7" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-amber-500">
+                    <h2 class="text-2xl font-bold mb-4 text-amber-700">7. Añadir Nodos a Lista</h2>
+                    <button id="e7_add_node" class="w-full bg-amber-600 text-white p-3 rounded-lg font-bold mb-4">Añadir
+                        Tarea</button>
+                    <ul id="e7_list" class="list-disc list-inside p-4 bg-amber-50 rounded-lg border space-y-1">
+                        <li class="p-1 bg-white rounded">Tarea Inicial 1</li>
+                    </ul>
+                    <button onclick="hideExercise()" class="mt-6 text-amber-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+            <!-- E8: Secciones colapsables -->
+            <div id="ejercicio8" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-500">
+                    <h2 class="text-2xl font-bold mb-4 text-yellow-700">8. Secciones Colapsables (Acordeón)</h2>
+                    <div class="space-y-2">
+                        <div class="border border-yellow-300 rounded-lg overflow-hidden">
+                            <div id="e8_header1"
+                                class="p-3 bg-yellow-100 cursor-pointer font-semibold flex justify-between items-center">
+                                Título Sección 1 <span id="e8_icon1">+</span></div>
+                            <div id="e8_content1" class="p-3 bg-white hidden border-t border-yellow-300">Contenido de la
+                                primera sección.</div>
+                        </div>
+                        <div class="border border-yellow-300 rounded-lg overflow-hidden">
+                            <div id="e8_header2"
+                                class="p-3 bg-yellow-100 cursor-pointer font-semibold flex justify-between items-center">
+                                Título Sección 2 <span id="e8_icon2">+</span></div>
+                            <div id="e8_content2" class="p-3 bg-white hidden border-t border-yellow-300">Contenido de la
+                                segunda sección.</div>
+                        </div>
+                    </div>
+                    <button onclick="hideExercise()" class="mt-6 text-yellow-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+            <!-- E9: Eventos ratón y teclado -->
+            <div id="ejercicio9" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-lime-500">
+                    <h2 class="text-2xl font-bold mb-4 text-lime-700">9. Eventos de Ratón y Teclado</h2>
+                    <div class="p-4 bg-lime-50 rounded-lg border space-y-2">
+                        <p class="font-bold">Posición del Ratón:</p>
+                        <p id="e9_mouse_pos" class="font-mono text-sm">X: - | Y: -</p>
+                    </div>
+                    <div class="mt-4 p-4 bg-lime-50 rounded-lg border space-y-2">
+                        <p class="font-bold">Última Tecla Presionada:</p>
+                        <p id="e9_key" class="font-mono text-sm">Tecla: - | Código: -</p>
+                    </div>
+                    <button onclick="hideExercise()" class="mt-6 text-lime-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+            <!-- E10: Análisis de texto -->
+            <div id="ejercicio10" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-emerald-500">
+                    <h2 class="text-2xl font-bold mb-4 text-emerald-700">10. Análisis de Texto</h2>
+                    <textarea id="e10_text_area" rows="4" placeholder="Ingresa tu texto aquí..."
+                        class="w-full p-3 border rounded-lg mb-4"></textarea>
+                    <button id="e10_analyze"
+                        class="w-full bg-emerald-600 text-white p-3 rounded-lg font-bold">Analizar</button>
+                    <div class="mt-4 p-3 bg-emerald-50 rounded-lg border space-y-2">
+                        <p id="e10_chars" class="font-medium">Total de Caracteres: -</p>
+                        <p id="e10_words" class="font-medium">Total de Palabras: -</p>
+                    </div>
+                    <button onclick="hideExercise()" class="mt-6 text-emerald-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+            <!-- E11: Zonas de pantalla -->
+            <div id="ejercicio11" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-teal-500">
+                    <h2 class="text-2xl font-bold mb-4 text-teal-700">11. Zonas de Pantalla (Click)</h2>
+                    <p class="text-gray-600 mb-4">Haz clic en el área para identificar el cuadrante.</p>
+                    <div id="e11_click_area"
+                        class="w-full h-64 bg-gray-200 border-4 border-teal-400 flex items-center justify-center cursor-crosshair relative">
+                        <p id="e11_zone" class="text-xl font-bold text-teal-800 bg-white p-2 rounded-lg shadow-md">Zona:
+                            (Haz click aquí)</p>
+                    </div>
+                    <button onclick="hideExercise()" class="mt-6 text-teal-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+            <!-- E12: Formulario de registro -->
+            <div id="ejercicio12" class="exercise-view p-8 rounded-xl shadow-2xl">
+                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-cyan-500">
+                    <h2 class="text-2xl font-bold mb-4 text-cyan-700">12. Formulario de Registro con Validación</h2>
+                    <form id="e12_form" class="space-y-4">
+                        <input type="text" id="e12_name" placeholder="Nombre (Mín. 3 caracteres)"
+                            class="w-full p-3 border rounded-lg">
+                        <input type="email" id="e12_email" placeholder="Correo Electrónico Válido"
+                            class="w-full p-3 border rounded-lg">
+                        <button type="submit"
+                            class="w-full bg-cyan-600 text-white p-3 rounded-lg font-bold">Registrarse</button>
+                        <div id="e12_message" class="p-3 rounded-lg border hidden text-sm font-medium"></div>
+                    </form>
+                    <button onclick="hideExercise()" class="mt-6 text-cyan-500 font-semibold">&larr; Volver al
+                        Menú</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- Fin Contenedor de Vistas -->
+
+    </div>
+
+    <!-- Carga del archivo principal de módulos de JavaScript -->
+    <script type="module" src="./js/main.js"></script>
+
+</body>
+
+</html>
