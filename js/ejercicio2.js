@@ -1,30 +1,36 @@
-// js/ejercicio2.js: Lógica para la Conjetura de Collatz
-
+// js/ejercicio2.js — Conjetura de Collatz con visualización mejorada
 export function init_ejercicio2() {
     const btn = document.getElementById('e2_calculate');
     const input = document.getElementById('e2_input');
     const sequenceDisplay = document.getElementById('e2_sequence');
 
     btn.onclick = () => {
-        let n = parseInt(input.value);
+        const value = input.value.trim();
+        const n = parseInt(value);
+
         if (isNaN(n) || n <= 0) {
-            sequenceDisplay.textContent = 'Por favor, ingresa un entero positivo.';
+            sequenceDisplay.innerHTML = `<span class="text-red-500 font-semibold"> Por favor, ingresa un número entero positivo.</span>`;
             return;
         }
 
         let sequence = [n];
-        let count = 0;
-        // Límite de seguridad para evitar loops infinitos en el navegador
-        while (n !== 1 && count < 500) { 
-            if (n % 2 === 0) {
-                n = n / 2;
-            } else {
-                n = 3 * n + 1;
-            }
-            sequence.push(n);
-            count++;
+        let current = n;
+        let steps = 0;
+        const MAX_STEPS = 500;  
+
+        while (current !== 1 && steps < MAX_STEPS) {
+            current = current % 2 === 0 ? current / 2 : 3 * current + 1;
+            sequence.push(current);
+            steps++;
         }
-        
-        sequenceDisplay.textContent = sequence.join(' → ');
+
+        const formattedSequence = sequence.join(' → ');
+        sequenceDisplay.innerHTML = `
+            <div class="animate-fadeIn">
+                <p class="text-gray-800 font-medium mb-2"> Secuencia generada:</p>
+                <p class="text-purple-700 font-semibold break-words">${formattedSequence}</p>
+                <p class="mt-3 text-sm text-gray-500">Longitud total: ${sequence.length} pasos</p>
+            </div>
+        `;
     };
 }
