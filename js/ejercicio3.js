@@ -1,30 +1,54 @@
-// js/ejercicio3.js: Lógica para el Análisis Condicional (Positivo, Negativo o Cero)
-
+// js/ejercicio3.js — Demostración del Ejercicio 3 (Condicionales)
 export function init_ejercicio3() {
-    const btn = document.getElementById('e3_check');
-    const input = document.getElementById('e3_input');
-    const resultDisplay = document.getElementById('e3_result');
+    const runBtn = document.getElementById("e3_run");
 
-    btn.onclick = () => {
-        const num = parseFloat(input.value);
-        let status = '';
-        let className = 'text-lg font-medium p-3 rounded-lg border';
 
-        if (isNaN(num)) {
-            status = 'Ingresa un valor numérico.';
-            className += ' bg-red-50 border-red-200';
-        } else if (num > 0) {
-            status = 'El número es Positivo.';
-            className += ' bg-green-50 border-green-200';
-        } else if (num < 0) {
-            status = 'El número es Negativo.';
-            className += ' bg-red-50 border-red-200';
-        } else {
-            status = 'El número es Cero.';
-            className += ' bg-yellow-50 border-yellow-200';
+    runBtn.onclick = async () => {
+        var numero1 = 5;
+        var numero2 = 8;
+
+        const swalBaseConfig = {
+            confirmButtonText: 'Aceptar',
+            background: '#0a141d',
+            color: '#e6f7ff',
+            confirmButtonColor: '#00e5ff'
+        };
+
+        if (numero1 <= numero2) {
+            await Swal.fire({
+                ...swalBaseConfig,
+                title: 'Condición 1',
+                text: 'numero1 no es mayor que numero2',
+                icon: 'info',
+            });
+
         }
-        
-        resultDisplay.textContent = `Estado: ${status}`;
-        resultDisplay.className = className;
-    };
-}
+
+        if (numero2 > 0) {
+            await Swal.fire({
+                ...swalBaseConfig,
+                title: 'Condición 2',
+                text: 'numero2 es positivo',
+                icon: 'success',
+            });
+        }
+
+
+        if (numero1 < 0 || numero1 !== 0) {
+            await Swal.fire({
+                ...swalBaseConfig,
+                title: 'Condición 3',
+                text: 'numero1 es negativo o distinto de cero',
+                icon: 'warning',
+            });
+        }
+        if ((numero1 + 1) < numero2) {
+            await Swal.fire({
+                ...swalBaseConfig,
+                title: 'Condición 4',
+                text: 'Incrementar en 1 unidad el valor de numero1 no lo hace mayor o igual que numero2',
+                icon: 'info',
+            });
+        }
+    }
+};

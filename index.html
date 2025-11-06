@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
@@ -479,19 +481,39 @@
                     </button>
                 </div>
             </div>
-
-
             <!-- E3: Condicionales -->
             <div id="ejercicio3" class="exercise-view p-8 rounded-xl shadow-2xl">
                 <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-fuchsia-500">
-                    <h2 class="text-2xl font-bold mb-4 text-fuchsia-700">3. Análisis Condicional</h2>
-                    <input type="number" id="e3_input" placeholder="Ingresa un número"
-                        class="w-full p-3 border rounded-lg mb-4">
-                    <button id="e3_check" class="w-full bg-fuchsia-600 text-white p-3 rounded-lg font-bold">Analizar
-                        Número</button>
-                    <p id="e3_result" class="mt-4 text-lg font-medium p-3 bg-fuchsia-50 rounded-lg">Estado: -</p>
-                    <button onclick="hideExercise()" class="mt-6 text-fuchsia-500 font-semibold">&larr; Volver al
-                        Menú</button>
+                    <h2 class="text-2xl font-bold mb-4 text-fuchsia-700">3. Condicionales – Demostración</h2>
+
+                    <!-- Bloque de código mostrado -->
+                    <pre
+                        class="bg-gray-900 text-green-200 text-sm rounded-lg p-4 overflow-x-auto font-mono mb-4 shadow-inner">
+var numero1 = 5;
+var numero2 = 8;
+
+if (numero1 <= numero2) {
+    alert("numero1 no es mayor que numero2");
+}
+if (numero2 > 0) {
+    alert("numero2 es positivo");
+}
+if (numero1 < 0 || numero1 !== 0) {
+    alert("numero1 es negativo o distinto de cero");
+}
+if ((numero1 + 1) < numero2) {
+    alert("Incrementar en 1 unidad el valor de numero1 no lo hace mayor o igual que numero2");
+}
+    </pre>
+
+                    <button id="e3_run"
+                        class="w-full bg-fuchsia-600 text-white p-3 rounded-lg font-bold hover:bg-fuchsia-700 transition">
+                        Ejecutar Demostración
+                    </button>
+
+                    <button onclick="hideExercise()" class="mt-6 text-fuchsia-500 font-semibold">
+                        &larr; Volver al Menú
+                    </button>
                 </div>
             </div>
 
