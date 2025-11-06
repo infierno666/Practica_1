@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicios JS Modulares</title>
-    <!-- Carga de Tailwind CSS -->
+    <title>Práctica 1 - Ejercicios JS</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
@@ -41,73 +44,436 @@
 </head>
 
 <body>
+    <nav class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-terminal text-3xl text-indigo-600"></i>
+                    <div class="text-xl font-extrabold text-gray-800 tracking-tight">PRACTICA #1</div>
+                </div>
 
-    <!-- Contenedor Principal de la Interfaz -->
+                <!-- Botón Hamburguesa (solo visible en móvil) -->
+                <div class="md:hidden">
+                    <button id="menu-toggle"
+                        class="text-gray-600 hover:text-indigo-600 focus:outline-none transition duration-300 ease-in-out active:scale-95">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Enlaces (Desktop) -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#ejercicios"
+                        class="flex items-center space-x-2 text-gray-600 hover:text-indigo-600 font-medium transition duration-150 ease-in-out">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>Ejercicios</span>
+                    </a>
+                    <a href="#equipo"
+                        class="flex items-center space-x-2 text-gray-600 hover:text-indigo-600 font-medium transition duration-150 ease-in-out">
+                        <i class="fas fa-users"></i>
+                        <span>Equipo</span>
+                    </a>
+                    <a href="https://github.com/infierno666/Practica_1.git" target="_blank"
+                        class="flex items-center space-x-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition duration-150 ease-in-out shadow-md">
+                        <i class="fab fa-github"></i>
+                        <span>Docs</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú móvil -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white border-t border-gray-200 shadow-inner transform transition-all duration-300 ease-in-out">
+            <div class="flex flex-col items-start px-5 py-4 space-y-4">
+                <a href="#ejercicios"
+                    class="flex items-center w-full space-x-3 text-gray-600 hover:text-indigo-600 font-medium transition duration-150 ease-in-out">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>Ejercicios</span>
+                </a>
+                <a href="#equipo"
+                    class="flex items-center w-full space-x-3 text-gray-600 hover:text-indigo-600 font-medium transition duration-150 ease-in-out">
+                    <i class="fas fa-users"></i>
+                    <span>Equipo</span>
+                </a>
+                <a href="https://github.com/infierno666/Practica_1.git" target="_blank"
+                    class="flex items-center justify-center w-full px-4 py-2 space-x-2 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition duration-150 ease-in-out shadow-md">
+                    <i class="fab fa-github"></i>
+                    <span>Docs</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
     <div id="main-interface" class="min-h-screen p-4 md:p-8 relative">
-        <header class="mb-8 p-4 bg-white shadow-lg rounded-xl">
-            <h1 class="text-3xl font-extrabold text-blue-600">🚀 Ejercicios de Fundamentos JavaScript & DOM</h1>
-            <p class="text-gray-600 mt-1">Selecciona un ejercicio para ver su implementación.</p>
+        <header class="bg-gray-50 py-16 border-b border-gray-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-5xl md:text-6xl font-black text-indigo-700 mb-4 neon-glow">
+                    Práctica Desarrollada para Diseño Web II
+                </h1>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                    Este conjunto de 12 ejercicios interactivos fue realizado en grupo como práctica para la materia de
+                    Diseño Web II. Para interactuar, simplemente haz clic en cualquier tarjeta y el ejercicio se
+                    activará dentro de un entorno modular.
+                </p>
+            </div>
         </header>
 
-        <!-- Grid de Botones -->
-        <div id="exercise-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-10">
-            <!-- Los botones usan la función global showExercise, definida en js/main.js -->
-            <button onclick="showExercise('ejercicio1')"
-                class="p-4 bg-indigo-500 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-600 transform hover:scale-105 transition duration-300">E1:
-                Calculadora</button>
-            <button onclick="showExercise('ejercicio2')"
-                class="p-4 bg-purple-500 text-white font-semibold rounded-lg shadow-md hover:bg-purple-600 transform hover:scale-105 transition duration-300">E2:
-                Conjetura de Collatz</button>
-            <button onclick="showExercise('ejercicio3')"
-                class="p-4 bg-fuchsia-500 text-white font-semibold rounded-lg shadow-md hover:bg-fuchsia-600 transform hover:scale-105 transition duration-300">E3:
-                Condicionales</button>
-            <button onclick="showExercise('ejercicio4')"
-                class="p-4 bg-pink-500 text-white font-semibold rounded-lg shadow-md hover:bg-pink-600 transform hover:scale-105 transition duration-300">E4:
-                Análisis de Array</button>
-            <button onclick="showExercise('ejercicio5')"
-                class="p-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transform hover:scale-105 transition duration-300">E5:
-                Info DOM</button>
-            <button onclick="showExercise('ejercicio6')"
-                class="p-4 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transform hover:scale-105 transition duration-300">E6:
-                Mostrar/Ocultar</button>
-            <button onclick="showExercise('ejercicio7')"
-                class="p-4 bg-amber-500 text-white font-semibold rounded-lg shadow-md hover:bg-amber-600 transform hover:scale-105 transition duration-300">E7:
-                Añadir Nodos</button>
-            <button onclick="showExercise('ejercicio8')"
-                class="p-4 bg-yellow-500 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-600 transform hover:scale-105 transition duration-300">E8:
-                Colapsables</button>
-            <button onclick="showExercise('ejercicio9')"
-                class="p-4 bg-lime-500 text-white font-semibold rounded-lg shadow-md hover:bg-lime-600 transform hover:scale-105 transition duration-300">E9:
-                Eventos Ratón/Teclado</button>
-            <button onclick="showExercise('ejercicio10')"
-                class="p-4 bg-emerald-500 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-600 transform hover:scale-105 transition duration-300">E10:
-                Análisis de Texto</button>
-            <button onclick="showExercise('ejercicio11')"
-                class="p-4 bg-teal-500 text-white font-semibold rounded-lg shadow-md hover:bg-teal-600 transform hover:scale-105 transition duration-300">E11:
-                Zonas de Pantalla</button>
-            <button onclick="showExercise('ejercicio12')"
-                class="p-4 bg-cyan-500 text-white font-semibold rounded-lg shadow-md hover:bg-cyan-600 transform hover:scale-105 transition duration-300">E12:
-                Formulario</button>
+        <!-- SECCIÓN: INTEGRANTES DEL GRUPO -->
+        <div id="equipo" class="pb-24 pt-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- TÍTULO DE SECCIÓN: EQUIPO -->
+                <h2
+                    class="text-3xl font-extrabold text-gray-800 mb-10 pt-4 pb-2 border-b-2 border-indigo-200 flex items-center space-x-3">
+                    <i class="fas fa-users text-indigo-600"></i>
+                    <span>Nuestro Equipo</span>
+                </h2>
+
+                <!-- GRID DE INTEGRANTES -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    <!-- Integrante 1 (Líder del Proyecto) -->
+                    <div
+                        class="bg-white p-6 rounded-xl shadow-lg text-center border-t-4 border-indigo-500 hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/100x100/A0AEC0/ffffff?text=U1" alt="Foto del Integrante 1"
+                            class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-md object-cover">
+                        <h3 class="text-xl font-bold text-gray-900">Nombre del Integrante 1</h3>
+                        <p class="text-indigo-600 font-semibold mb-3">Líder del Proyecto</p>
+                        <p class="text-sm text-gray-500">Encargado de la estructura principal del HTML y la estética
+                            general del sitio.</p>
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-indigo-600"><i
+                                    class="fab fa-github fa-lg"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-indigo-600"><i
+                                    class="fas fa-envelope fa-lg"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Integrante 2 (Desarrollador JS - Lógica) -->
+                    <div
+                        class="bg-white p-6 rounded-xl shadow-lg text-center border-t-4 border-purple-500 hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/100x100/A0AEC0/ffffff?text=U2" alt="Foto del Integrante 2"
+                            class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-md object-cover">
+                        <h3 class="text-xl font-bold text-gray-900">Nombre del Integrante 2</h3>
+                        <p class="text-purple-600 font-semibold mb-3">Desarrollador JS - Lógica</p>
+                        <p class="text-sm text-gray-500">Responsable de implementar y depurar los algoritmos de los
+                            ejercicios 1 al 6.</p>
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-purple-600"><i
+                                    class="fab fa-github fa-lg"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-purple-600"><i
+                                    class="fas fa-envelope fa-lg"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Integrante 3 (Diseño y Eventos DOM) -->
+                    <div
+                        class="bg-white p-6 rounded-xl shadow-lg text-center border-t-4 border-red-500 hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/100x100/A0AEC0/ffffff?text=U3" alt="Foto del Integrante 3"
+                            class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-md object-cover">
+                        <h3 class="text-xl font-bold text-gray-900">Nombre del Integrante 3</h3>
+                        <p class="text-red-600 font-semibold mb-3">Diseño y Eventos DOM</p>
+                        <p class="text-sm text-gray-500">Se centró en la manipulación del DOM y los ejercicios
+                            interactivos 7 al 12.</p>
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-red-600"><i class="fab fa-github fa-lg"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-red-600"><i
+                                    class="fas fa-envelope fa-lg"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Integrante 4 (Documentación y Testing) -->
+                    <div
+                        class="bg-white p-6 rounded-xl shadow-lg text-center border-t-4 border-teal-500 hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/100x100/A0AEC0/ffffff?text=U4" alt="Foto del Integrante 4"
+                            class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-md object-cover">
+                        <h3 class="text-xl font-bold text-gray-900">Nombre del Integrante 4</h3>
+                        <p class="text-teal-600 font-semibold mb-3">Documentación y Testing</p>
+                        <p class="text-sm text-gray-500">Verificó la funcionalidad y preparó la documentación final del
+                            repositorio.</p>
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-teal-600"><i
+                                    class="fab fa-github fa-lg"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-teal-600"><i
+                                    class="fas fa-envelope fa-lg"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /GRID DE INTEGRANTES -->
+            </div>
         </div>
-        <!-- Fin Grid de Botones -->
+
+        <!-- SECCIÓN: CATÁLOGO DE EJERCICIOS -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="ejercicios"
+                class="text-3xl font-extrabold text-gray-800 mb-8 pt-4 pb-2 border-b-2 border-indigo-200 flex items-center space-x-3">
+                <i class="fas fa-cubes text-indigo-600"></i>
+                <span>Catálogo de Ejercicios</span>
+            </h2>
+
+            <!-- Grid de Botones - Refactorizado a Diseño de Tarjetas (Icono Izquierda) -->
+            <div id="exercise-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+
+                <!-- E1: Calculadora (Indigo) -->
+                <button onclick="showExercise('ejercicio1')"
+                    class="flex items-center p-4 bg-indigo-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+
+                    <!-- Icono a la izquierda -->
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i class="fas fa-calculator opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+
+                    <!-- Contenido de Texto a la derecha -->
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 01</span>
+                        <h4 class="text-lg font-bold">Calculadora Expresión</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Realiza operaciones matemáticas
+                            complejas.
+                        </p>
+                    </div>
+                </button>
+
+                <!-- E2: Conjetura de Collatz (Purple) -->
+                <button onclick="showExercise('ejercicio2')"
+                    class="flex items-center p-4 bg-purple-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i class="fas fa-dice-one opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 02</span>
+                        <h4 class="text-lg font-bold">Conjetura de Collatz</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Simula la secuencia recursiva hasta
+                            alcanzar el 1.</p>
+                    </div>
+                </button>
+
+                <!-- E3: Condicionales (Fuchsia) -->
+                <button onclick="showExercise('ejercicio3')"
+                    class="flex items-center p-4 bg-fuchsia-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i class="fas fa-code-branch opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 03</span>
+                        <h4 class="text-lg font-bold">Condicionales (If/Else)</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Demuestra lógica booleana con
+                            escenarios.
+                        </p>
+                    </div>
+                </button>
+
+                <!-- E4: Análisis de Array (Pink) -->
+                <button onclick="showExercise('ejercicio4')"
+                    class="flex items-center p-4 bg-pink-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i class="fas fa-list-ol opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 04</span>
+                        <h4 class="text-lg font-bold">Análisis de Array</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Cuenta elementos, encuentra máximos y
+                            promedios.</p>
+                    </div>
+                </button>
+
+                <!-- E5: Info DOM (Red) -->
+                <button onclick="showExercise('ejercicio5')"
+                    class="flex items-center p-4 bg-red-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i class="fas fa-info-circle opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 05</span>
+                        <h4 class="text-lg font-bold">Información del DOM</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Inspecciona y muestra las propiedades
+                            del
+                            documento.</p>
+                    </div>
+                </button>
+
+                <!-- E6: Mostrar/Ocultar (Orange) -->
+                <button onclick="showExercise('ejercicio6')"
+                    class="flex items-center p-4 bg-orange-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i class="fas fa-eye-slash opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 06</span>
+                        <h4 class="text-lg font-bold">Mostrar y Ocultar</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Controla la visibilidad de elementos
+                            HTML
+                            con clicks.</p>
+                    </div>
+                </button>
+
+                <!-- E7: Añadir Nodos (Amber) -->
+                <button onclick="showExercise('ejercicio7')"
+                    class="flex items-center p-4 bg-amber-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i class="fas fa-plus-square opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 07</span>
+                        <h4 class="text-lg font-bold">Manipulación: Añadir</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Agrega dinámicamente nuevos nodos a una
+                            lista.</p>
+                    </div>
+                </button>
+
+                <!-- E8: Colapsables (Yellow) -->
+                <button onclick="showExercise('ejercicio8')"
+                    class="flex items-center p-4 bg-yellow-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i
+                            class="fas fa-angle-double-down opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 08</span>
+                        <h4 class="text-lg font-bold">Secciones Colapsables</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Crea contenido expandible tipo acordeón
+                            simple.</p>
+                    </div>
+                </button>
+
+                <!-- E9: Eventos Ratón/Teclado (Lime) -->
+                <button onclick="showExercise('ejercicio9')"
+                    class="flex items-center p-4 bg-lime-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i class="fas fa-mouse-pointer opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 09</span>
+                        <h4 class="text-lg font-bold">Eventos de Entrada</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Detecta clics, movimientos y
+                            pulsaciones
+                            del teclado.</p>
+                    </div>
+                </button>
+
+                <!-- E10: Análisis de Texto (Emerald) -->
+                <button onclick="showExercise('ejercicio10')"
+                    class="flex items-center p-4 bg-emerald-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i class="fas fa-font opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 10</span>
+                        <h4 class="text-lg font-bold">Análisis de Texto</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Cuenta palabras, caracteres y
+                            frecuencias.
+                        </p>
+                    </div>
+                </button>
+
+                <!-- E11: Zonas de Pantalla (Teal) -->
+                <button onclick="showExercise('ejercicio11')"
+                    class="flex items-center p-4 bg-teal-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i
+                            class="fas fa-window-maximize opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 11</span>
+                        <h4 class="text-lg font-bold">Zonas de Pantalla</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Muestra coordenadas y límites del
+                            viewport.
+                        </p>
+                    </div>
+                </button>
+
+                <!-- E12: Formulario (Cyan) -->
+                <button onclick="showExercise('ejercicio12')"
+                    class="flex items-center p-4 bg-cyan-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 group text-left">
+                    <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center mr-4 text-4xl">
+                        <i class="fas fa-check-square opacity-80 group-hover:opacity-100 transition duration-300"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <span class="text-xs font-light opacity-80 block">Ej. 12</span>
+                        <h4 class="text-lg font-bold">Manejo de Formulario</h4>
+                        <p class="text-sm opacity-90 font-light hidden sm:block">Valida y procesa los datos de un
+                            formulario.</p>
+                    </div>
+                </button>
+
+            </div>
+            <!-- Fin Grid de Botones -->
+        </div>
+
 
         <div id="exercise-views-container">
             <!-- Vistas de Ejercicios (Simulan los modales) -->
 
             <!-- E1: Calculadora -->
             <div id="ejercicio1" class="exercise-view p-8 rounded-xl shadow-2xl">
-                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-indigo-500">
-                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">1. Calculadora Simple</h2>
-                    <p class="text-gray-600 mb-4">Suma dos números ingresados.</p>
-                    <input type="number" id="e1_num1" placeholder="Primer número"
-                        class="w-full p-3 border rounded-lg mb-2">
-                    <input type="number" id="e1_num2" placeholder="Segundo número"
-                        class="w-full p-3 border rounded-lg mb-4">
-                    <button id="e1_calculate" class="w-full bg-indigo-600 text-white p-3 rounded-lg font-bold">Calcular
-                        Suma</button>
-                    <p id="e1_result" class="mt-4 text-lg font-medium p-3 bg-indigo-50 rounded-lg">Resultado: -</p>
-                    <button onclick="hideExercise()" class="mt-6 text-indigo-500 font-semibold">&larr; Volver al
-                        Menú</button>
+                <div class="max-w-xs w-full mx-auto bg-white p-6 rounded-2xl shadow-xl border border-gray-200">
+
+                    <h2
+                        class="text-2xl font-bold mb-4 text-indigo-700 text-center flex items-center justify-center gap-2">
+                        <i class="fas fa-calculator text-indigo-500"></i> Calculadora
+                    </h2>
+
+                    <div class="p-4 mb-4 bg-gray-50 rounded-lg shadow-inner shadow-gray-200 border border-gray-300">
+                        <p id="calcExpresion"
+                            class="text-xl text-gray-500 text-right min-h-[1.5rem] font-mono whitespace-nowrap overflow-x-auto">
+                            0</p>
+                        <p id="calcResultado"
+                            class="text-4xl font-extrabold text-gray-800 text-right font-sans min-h-[2.5rem] pt-1 overflow-x-auto">0</p>
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-3">
+
+                        <button data-value="C"
+                            class="calc-btn text-indigo-600 bg-gray-200 hover:bg-gray-300 ring-1 ring-indigo-500/50">
+                            <i class="fas fa-undo-alt"></i> </button>
+                        <button data-value="←"
+                            class="calc-btn text-indigo-600 bg-gray-200 hover:bg-gray-300 ring-1 ring-indigo-500/50">
+                            <i class="fas fa-backspace"></i>
+                        </button>
+                        <button data-value="%"
+                            class="calc-btn text-indigo-600 bg-gray-200 hover:bg-gray-300 ring-1 ring-indigo-500/50">
+                            <i class="fas fa-percent"></i>
+                        </button>
+                        <button data-value="÷"
+                            class="calc-btn-operator text-indigo-600 bg-gray-200 hover:bg-gray-300 ring-1 ring-indigo-500/50">
+                            <i class="fas fa-divide"></i>
+                        </button>
+
+                        <button data-value="7" class="calc-btn-number">7</button>
+                        <button data-value="8" class="calc-btn-number">8</button>
+                        <button data-value="9" class="calc-btn-number">9</button>
+                        <button data-value="×" class="calc-btn-operator text-indigo-600">
+                            <i class="fas fa-times"></i>
+                        </button>
+
+                        <button data-value="4" class="calc-btn-number">4</button>
+                        <button data-value="5" class="calc-btn-number">5</button>
+                        <button data-value="6" class="calc-btn-number">6</button>
+                        <button data-value="-" class="calc-btn-operator text-indigo-600">
+                            <i class="fas fa-minus"></i>
+                        </button>
+
+                        <button data-value="1" class="calc-btn-number">1</button>
+                        <button data-value="2" class="calc-btn-number">2</button>
+                        <button data-value="3" class="calc-btn-number">3</button>
+                        <button data-value="+" class="calc-btn-operator text-indigo-600">
+                            <i class="fas fa-plus"></i>
+                        </button>
+
+                        <button data-value="adornment"></button>
+                        <button data-value="0" class="calc-btn-number">0</button>
+                        <button data-value="." class="calc-btn-number">.</button>
+                        <button data-value="="
+                            class="calc-btn-equal bg-indigo-600 text-white hover:bg-indigo-700 ring-2 ring-indigo-500/70">
+                            <i class="fas fa-equals"></i>
+                        </button>
+                    </div>
+
+                    <button onclick="hideExercise()"
+                        class="mt-6 w-full py-2 text-indigo-500 font-semibold hover:text-indigo-700 transition block text-sm flex items-center justify-center gap-2">
+                        <i class="fas fa-arrow-left"></i> Volver al Menú
+                    </button>
                 </div>
             </div>
 
@@ -296,7 +662,12 @@
         <!-- Fin Contenedor de Vistas -->
 
     </div>
-
+    <!-- 3. Footer (app-footer) -->
+    <footer class="bg-gray-800 text-gray-300 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <small class="text-sm font-light">© 2025 • Práctica 1 de JavaScript (Entrega: 07-11-2025)</small>
+        </div>
+    </footer>
     <!-- Carga del archivo principal de módulos de JavaScript -->
     <script type="module" src="./js/main.js"></script>
 

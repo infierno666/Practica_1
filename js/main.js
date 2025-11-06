@@ -36,6 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Esto es necesario para que los botones con 'onclick="..."' en el HTML puedan llamar a estas funciones.
     window.showExercise = (viewId) => showExercise(viewId, initFunctions);
     window.hideExercise = hideExercise;
-    
+
     console.log("Aplicación modular iniciada. Total de ejercicios cargados:", Object.keys(initFunctions).length);
+});
+
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+let isOpen = false;
+
+menuToggle.addEventListener('click', () => {
+    isOpen = !isOpen;
+    mobileMenu.classList.toggle('hidden');
+    menuToggle.innerHTML = isOpen
+        ? '<i class="fas fa-times text-2xl"></i>'
+        : '<i class="fas fa-bars text-2xl"></i>';
 });
