@@ -850,16 +850,22 @@ if ((numero1 + 1) < numero2) {
             <div id="ejercicio10" class="exercise-view p-8 rounded-xl shadow-2xl">
                 <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-emerald-500">
                     <h2 class="text-2xl font-bold mb-4 text-emerald-700">10. Análisis de Texto</h2>
+
                     <textarea id="e10_text_area" rows="4" placeholder="Ingresa tu texto aquí..."
                         class="w-full p-3 border rounded-lg mb-4"></textarea>
-                    <button id="e10_analyze"
-                        class="w-full bg-emerald-600 text-white p-3 rounded-lg font-bold">Analizar</button>
+
+                    <button id="e10_analyze" class="w-full bg-emerald-600 text-white p-3 rounded-lg font-bold">
+                        Analizar
+                    </button>
+
                     <div class="mt-4 p-3 bg-emerald-50 rounded-lg border space-y-2">
                         <p id="e10_chars" class="font-medium">Total de Caracteres: -</p>
                         <p id="e10_words" class="font-medium">Total de Palabras: -</p>
                     </div>
-                    <button onclick="hideExercise()" class="mt-6 text-emerald-500 font-semibold">&larr; Volver al
-                        Menú</button>
+
+                    <button onclick="hideExercise()" class="mt-6 text-emerald-500 font-semibold">
+                        &larr; Volver al Menú
+                    </button>
                 </div>
             </div>
 
@@ -879,22 +885,86 @@ if ((numero1 + 1) < numero2) {
             </div>
 
             <!-- E12: Formulario de registro -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+                integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
+
             <div id="ejercicio12" class="exercise-view p-8 rounded-xl shadow-2xl">
                 <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-cyan-500">
-                    <h2 class="text-2xl font-bold mb-4 text-cyan-700">12. Formulario de Registro con Validación</h2>
-                    <form id="e12_form" class="space-y-4">
-                        <input type="text" id="e12_name" placeholder="Nombre (Mín. 3 caracteres)"
-                            class="w-full p-3 border rounded-lg">
-                        <input type="email" id="e12_email" placeholder="Correo Electrónico Válido"
-                            class="w-full p-3 border rounded-lg">
+                    <h2 class="text-2xl font-bold mb-6 text-cyan-700">Ejercicio 12: Formulario con validación mejorado
+                    </h2>
+
+                    <form id="formulario" class="space-y-4">
+
+                        <div class="flex items-center border rounded-lg p-2">
+                            <i class="fas fa-user text-cyan-500 px-2"></i>
+                            <input id="nombre" placeholder="Nombre (mínimo 3 caracteres)"
+                                class="w-full p-2 outline-none">
+                        </div>
+
+                        <div class="flex items-center border rounded-lg p-2">
+                            <i class="fas fa-user-alt text-cyan-500 px-2"></i>
+                            <input id="apP" placeholder="Apellido Paterno" class="w-full p-2 outline-none">
+                        </div>
+
+                        <div class="flex items-center border rounded-lg p-2">
+                            <i class="fas fa-user-alt text-cyan-500 px-2"></i>
+                            <input id="apM" placeholder="Apellido Materno" class="w-full p-2 outline-none">
+                        </div>
+
+                        <div class="flex items-center border rounded-lg p-2">
+                            <i class="fas fa-home text-cyan-500 px-2"></i>
+                            <input id="direccion" placeholder="Dirección completa" class="w-full p-2 outline-none">
+                        </div>
+
+                        <div class="flex items-center border rounded-lg p-2">
+                            <i class="fas fa-birthday-cake text-cyan-500 px-2"></i>
+                            <input id="edad" type="number" placeholder="Edad" class="w-full p-2 outline-none" min="0">
+                        </div>
+
+                        <div class="flex items-center border rounded-lg p-2">
+                            <i class="fas fa-calendar-alt text-cyan-500 px-2"></i>
+                            <input id="fecha" type="date" class="w-full p-2 outline-none">
+                        </div>
+
+                        <div class="flex items-center border rounded-lg p-2">
+                            <i class="fas fa-venus-mars text-cyan-500 px-2"></i>
+                            <select id="sexo" class="w-full p-2 outline-none">
+                                <option value="">Selecciona tu género</option>
+                                <option value="Masculino">Masculino ♂</option>
+                                <option value="Femenino">Femenino ♀</option>
+                                <option value="Otro">Otro ⚧</option>
+                            </select>
+                        </div>
+
+                        <div class="flex items-center border rounded-lg p-2">
+                            <i class="fas fa-envelope text-cyan-500 px-2"></i>
+                            <input id="email" type="email" placeholder="ejemplo@correo.com"
+                                class="w-full p-2 outline-none">
+                        </div>
+
+                        <div class="flex items-center border rounded-lg p-2">
+                            <i class="fas fa-phone text-cyan-500 px-2"></i>
+                            <input id="telefono" type="tel" placeholder="Solo números, 7-15 dígitos"
+                                class="w-full p-2 outline-none">
+                        </div>
+
+                        <div class="flex items-center border rounded-lg p-2">
+                            <i class="fas fa-city text-cyan-500 px-2"></i>
+                            <input id="ciudad" placeholder="Ciudad de residencia" class="w-full p-2 outline-none">
+                        </div>
+
+                        <div id="mensaje" class="p-3 rounded-lg border hidden text-sm font-medium"></div>
+
                         <button type="submit"
-                            class="w-full bg-cyan-600 text-white p-3 rounded-lg font-bold">Registrarse</button>
-                        <div id="e12_message" class="p-3 rounded-lg border hidden text-sm font-medium"></div>
+                            class="w-full bg-cyan-600 text-white p-3 rounded-lg font-bold hover:bg-cyan-700 transition duration-150">Enviar</button>
                     </form>
-                    <button onclick="hideExercise()" class="mt-6 text-cyan-500 font-semibold">&larr; Volver al
+
+                    <button onclick="hideExercise()" class="mt-6 text-cyan-500 font-semibold w-full">&larr; Volver al
                         Menú</button>
                 </div>
             </div>
+
 
         </div>
         <section class="mt-10 mb-10">

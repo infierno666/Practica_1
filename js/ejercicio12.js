@@ -1,48 +1,51 @@
-// js/ejercicio12.js: Lógica para Formulario de Registro con Validación
-
+// js/ejercicio12.js
 export function init_ejercicio12() {
-    const form = document.getElementById('e12_form');
-    const nameInput = document.getElementById('e12_name');
-    const emailInput = document.getElementById('e12_email');
-    const messageDiv = document.getElementById('e12_message');
+    const form = document.getElementById('formulario');
+    const mensajeDiv = document.getElementById('mensaje');
 
-    const validateEmail = (email) => {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    };
+    const validarEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validarTelefono = tel => /^[0-9]{7,15}$/.test(tel);
 
     form.onsubmit = (e) => {
         e.preventDefault();
 
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        let isValid = true;
-        let message = '';
-        let classes = 'bg-red-100 border-red-400 text-red-700';
+        const nombre = document.getElementById('nombre').value.trim();
+        const apP = document.getElementById('apP').value.trim();
+        const apM = document.getElementById('apM').value.trim();
+        const direccion = document.getElementById('direccion').value.trim();
+        const edad = document.getElementById('edad').value.trim();
+        const fecha = document.getElementById('fecha').value.trim();
+        const sexo = document.getElementById('sexo').value;
+        const email = document.getElementById('email').value.trim();
+        const telefono = document.getElementById('telefono').value.trim();
+        const ciudad = document.getElementById('ciudad').value.trim();
 
-        if (name.length < 3) {
-            isValid = false;
-            message = 'El Nombre debe tener al menos 3 caracteres.';
-        } else if (!validateEmail(email)) {
-            isValid = false;
-            message = 'Por favor, ingresa un Correo Electrónico válido.';
-        }
+        let mensaje = '';
+        let clases = 'bg-red-100 border-red-400 text-red-700';
+        let valido = true;
 
-        // Limpiar clases anteriores
-        messageDiv.className = 'p-3 rounded-lg border text-sm font-medium';
+        if (nombre.length < 3) { valido = false; mensaje = 'Nombre inválido (mín. 3 caracteres).'; }
+        else if (!apP) { valido = false; mensaje = 'Apellido paterno obligatorio.'; }
+        else if (!apM) { valido = false; mensaje = 'Apellido materno obligatorio.'; }
+        else if (!direccion) { valido = false; mensaje = 'Dirección obligatoria.'; }
+        else if (!edad || isNaN(edad) || edad < 0) { valido = false; mensaje = 'Edad inválida.'; }
+        else if (!fecha) { valido = false; mensaje = 'Fecha de nacimiento obligatoria.'; }
+        else if (!sexo) { valido = false; mensaje = 'Selecciona un género.'; }
+        else if (!validarEmail(email)) { valido = false; mensaje = 'Correo inválido.'; }
+        else if (!validarTelefono(telefono)) { valido = false; mensaje = 'Teléfono inválido (solo números, 7-15 dígitos).'; }
+        else if (!ciudad) { valido = false; mensaje = 'Ciudad obligatoria.'; }
 
-        if (isValid) {
-            message = `Registro exitoso para: ${name} (${email}).`;
-            classes = 'bg-green-100 border-green-400 text-green-700';
+        mensajeDiv.className = 'p-3 rounded-lg border text-sm font-medium';
+        if (valido) {
+            mensaje = `✅ Registro exitoso para ${nombre} ${apP} ${apM} (${email})`;
+            clases = 'bg-green-100 border-green-400 text-green-700';
             form.reset();
-        } else {
-            classes = 'bg-red-100 border-red-400 text-red-700';
         }
 
-        messageDiv.textContent = message;
-        messageDiv.classList.add(...classes.split(' '));
-        messageDiv.classList.remove('hidden');
+        mensajeDiv.textContent = mensaje;
+        mensajeDiv.classList.add(...clases.split(' '));
+        mensajeDiv.classList.remove('hidden');
     };
 
-    // Limpiar mensaje inicial
-    messageDiv.classList.add('hidden');
-}
+    mensajeDiv.classList.add('hidden');
+};
