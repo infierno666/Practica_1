@@ -619,55 +619,90 @@ if ((numero1 + 1) < numero2) {
                 </div>
             </div>
 
-            <!-- E10: Análisis de texto -->
-            <div id="ejercicio10" class="exercise-view p-8 rounded-xl shadow-2xl">
-                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-emerald-500">
-                    <h2 class="text-2xl font-bold mb-4 text-emerald-700">10. Análisis de Texto</h2>
-                    <textarea id="e10_text_area" rows="4" placeholder="Ingresa tu texto aquí..."
-                        class="w-full p-3 border rounded-lg mb-4"></textarea>
-                    <button id="e10_analyze"
-                        class="w-full bg-emerald-600 text-white p-3 rounded-lg font-bold">Analizar</button>
-                    <div class="mt-4 p-3 bg-emerald-50 rounded-lg border space-y-2">
-                        <p id="e10_chars" class="font-medium">Total de Caracteres: -</p>
-                        <p id="e10_words" class="font-medium">Total de Palabras: -</p>
-                    </div>
-                    <button onclick="hideExercise()" class="mt-6 text-emerald-500 font-semibold">&larr; Volver al
-                        Menú</button>
-                </div>
-            </div>
+           <!-- EJERCICIO 10 -->
+<div id="ejercicio10" class="exercise-view p-8 rounded-xl shadow-2xl">
+  <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-emerald-500">
+    <h2 class="text-2xl font-bold mb-4 text-emerald-700">Ejercicio 10: Texto con split()</h2>
 
-            <!-- E11: Zonas de pantalla -->
-            <div id="ejercicio11" class="exercise-view p-8 rounded-xl shadow-2xl">
-                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-teal-500">
-                    <h2 class="text-2xl font-bold mb-4 text-teal-700">11. Zonas de Pantalla (Click)</h2>
-                    <p class="text-gray-600 mb-4">Haz clic en el área para identificar el cuadrante.</p>
-                    <div id="e11_click_area"
-                        class="w-full h-64 bg-gray-200 border-4 border-teal-400 flex items-center justify-center cursor-crosshair relative">
-                        <p id="e11_zone" class="text-xl font-bold text-teal-800 bg-white p-2 rounded-lg shadow-md">Zona:
-                            (Haz click aquí)</p>
-                    </div>
-                    <button onclick="hideExercise()" class="mt-6 text-teal-500 font-semibold">&larr; Volver al
-                        Menú</button>
-                </div>
-            </div>
+    <label class="block mb-2 font-medium text-gray-700">Escribe una oración:</label>
+    <input type="text" id="texto" class="w-full p-3 border rounded-lg mb-4" placeholder="Ingresa tu texto aquí...">
 
-            <!-- E12: Formulario de registro -->
-            <div id="ejercicio12" class="exercise-view p-8 rounded-xl shadow-2xl">
-                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-cyan-500">
-                    <h2 class="text-2xl font-bold mb-4 text-cyan-700">12. Formulario de Registro con Validación</h2>
-                    <form id="e12_form" class="space-y-4">
-                        <input type="text" id="e12_name" placeholder="Nombre (Mín. 3 caracteres)"
-                            class="w-full p-3 border rounded-lg">
-                        <input type="email" id="e12_email" placeholder="Correo Electrónico Válido"
-                            class="w-full p-3 border rounded-lg">
-                        <button type="submit"
-                            class="w-full bg-cyan-600 text-white p-3 rounded-lg font-bold">Registrarse</button>
-                        <div id="e12_message" class="p-3 rounded-lg border hidden text-sm font-medium"></div>
-                    </form>
-                    <button onclick="hideExercise()" class="mt-6 text-cyan-500 font-semibold">&larr; Volver al
-                        Menú</button>
-                </div>
-            </div>
+    <button onclick="analizar()" class="w-full bg-emerald-600 text-white p-3 rounded-lg font-bold">
+      Analizar texto
+    </button>
+
+    <button onclick="hideExercise()" class="mt-6 text-emerald-500 font-semibold w-full">
+      &larr; Volver al Menú
+    </button>
+  </div>
+</div>
+
+<!-- EJERCICIO 11 -->
+<div id="ejercicio11" class="exercise-view p-8 rounded-xl shadow-2xl">
+  <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-teal-500">
+    <h2 class="text-2xl font-bold mb-4 text-teal-700">Ejercicio 11: Zona del clic</h2>
+
+    <p class="text-gray-600 mb-4">Haz clic en cualquier parte de la pantalla y te diré en qué zona hiciste clic.</p>
+    <p id="mensajeZona" class="font-medium text-teal-800 bg-teal-50 p-3 rounded-lg border">
+      Aún no has hecho clic.
+    </p>
+
+    <button onclick="hideExercise()" class="mt-6 text-teal-500 font-semibold w-full">
+      &larr; Volver al Menú
+    </button>
+  </div>
+</div>
+
+<!-- EJERCICIO 12 -->
+<div id="ejercicio12" class="exercise-view p-8 rounded-xl shadow-2xl">
+  <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-cyan-500">
+    <h2 class="text-2xl font-bold mb-4 text-cyan-700">Ejercicio 12: Formulario con validación</h2>
+
+    <form id="formulario" onsubmit="return validar(event)" class="space-y-3">
+      <label>Nombre:</label>
+      <input id="nombre" class="w-full p-2 border rounded-lg">
+
+      <label>Apellido Paterno:</label>
+      <input id="apP" class="w-full p-2 border rounded-lg">
+
+      <label>Apellido Materno:</label>
+      <input id="apM" class="w-full p-2 border rounded-lg">
+
+      <label>Dirección:</label>
+      <input id="direccion" class="w-full p-2 border rounded-lg">
+
+      <label>Edad:</label>
+      <input id="edad" type="number" class="w-full p-2 border rounded-lg">
+
+      <label>Fecha de Nacimiento:</label>
+      <input id="fecha" type="date" class="w-full p-2 border rounded-lg">
+
+      <label>Sexo:</label>
+      <select id="sexo" class="w-full p-2 border rounded-lg">
+        <option value="">Selecciona...</option>
+        <option>Masculino</option>
+        <option>Femenino</option>
+      </select>
+
+      <label>Email:</label>
+      <input id="email" type="email" class="w-full p-2 border rounded-lg">
+
+      <label>Teléfono:</label>
+      <input id="telefono" type="text" class="w-full p-2 border rounded-lg">
+
+      <label>Ciudad:</label>
+      <input id="ciudad" class="w-full p-2 border rounded-lg">
+
+      <button type="submit" class="w-full bg-cyan-600 text-white p-3 rounded-lg font-bold">
+        Enviar
+      </button>
+    </form>
+
+    <button onclick="hideExercise()" class="mt-6 text-cyan-500 font-semibold w-full">
+      &larr; Volver al Menú
+    </button>
+  </div>
+</div>
 
         </div>
         <!-- Fin Contenedor de Vistas -->
