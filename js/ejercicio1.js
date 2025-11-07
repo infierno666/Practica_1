@@ -92,7 +92,6 @@ function manejarEntrada(valor) {
 }
 
 export function init_ejercicio1() {
-    console.log("Inicializando Calculadora de Expresión (Estilo Claro)");
     const interfaceElement = document.getElementById('ejercicio1');
     if (!interfaceElement) return;
 

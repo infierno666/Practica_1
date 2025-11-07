@@ -58,6 +58,26 @@
         .animate-fadeIn {
             animation: fadeIn 0.5s ease-in-out;
         }
+
+        #e9_message_area {
+            border: 2px solid #ccc;
+            background-color: #f9fafb;
+        }
+
+        #e9_mouse_data,
+        #e9_keyboard_data {
+            margin-bottom: 10px;
+        }
+
+        #e9_info_box h3 {
+            font-size: 1.5rem;
+            color: #222;
+        }
+
+        #e9_info_box span {
+            font-weight: bold;
+            color: #0077cc;
+        }
     </style>
 </head>
 
@@ -569,9 +589,15 @@ if ((numero1 + 1) < numero2) {
                     <h2 class="text-2xl font-bold mb-4 text-amber-700">7. Añadir Nodos a Lista</h2>
                     <button id="e7_add_node" class="w-full bg-amber-600 text-white p-3 rounded-lg font-bold mb-4">Añadir
                         Tarea</button>
+
                     <ul id="e7_list" class="list-disc list-inside p-4 bg-amber-50 rounded-lg border space-y-1">
-                        <li class="p-1 bg-white rounded">Tarea Inicial 1</li>
+                        <li class="p-1 bg-white rounded flex justify-between items-center">
+                            <span>Tarea Inicial 1</span>
+                            <button
+                                class="text-red-500 hover:text-red-700 ml-2 text-xs font-bold e7_delete_btn">X</button>
+                        </li>
                     </ul>
+
                     <button onclick="hideExercise()" class="mt-6 text-amber-500 font-semibold">&larr; Volver al
                         Menú</button>
                 </div>
@@ -580,44 +606,105 @@ if ((numero1 + 1) < numero2) {
             <!-- E8: Secciones colapsables -->
             <div id="ejercicio8" class="exercise-view p-8 rounded-xl shadow-2xl">
                 <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-500">
-                    <h2 class="text-2xl font-bold mb-4 text-yellow-700">8. Secciones Colapsables (Acordeón)</h2>
+                    <h2 class="text-2xl font-bold mb-4 text-yellow-700">
+                        8. Secciones Colapsables — Conceptos Clave de Ciberseguridad
+                    </h2>
+
                     <div class="space-y-2">
+
+                        <!-- Sección 1 -->
                         <div class="border border-yellow-300 rounded-lg overflow-hidden">
-                            <div id="e8_header1"
-                                class="p-3 bg-yellow-100 cursor-pointer font-semibold flex justify-between items-center">
-                                Título Sección 1 <span id="e8_icon1">+</span></div>
-                            <div id="e8_content1" class="p-3 bg-white hidden border-t border-yellow-300">Contenido de la
-                                primera sección.</div>
+                            <div class="p-3 bg-yellow-100 flex justify-between items-center accordion-header"
+                                data-target="e8_content1" data-icon="e8_icon1" data-title="e8_title1" role="button"
+                                tabindex="0" aria-expanded="true">
+                                <a href="#" id="e8_title1" class="accordion-title"
+                                    data-original="Contraseñas Seguras">Ocultar Contraseñas Seguras</a>
+                                <span id="e8_icon1" class="accordion-icon">–</span>
+                            </div>
+                            <div id="e8_content1" class="p-3 bg-white border-t border-yellow-300 accordion-content">
+                                Las contraseñas seguras son la primera línea de defensa contra accesos no autorizados.
+                                Una buena contraseña debe tener al menos 12 caracteres, combinar letras mayúsculas,
+                                minúsculas, números y símbolos. Además, no debe reutilizarse entre cuentas diferentes.
+                                <br><strong>Consejo:</strong> Usa un gestor de contraseñas para mantenerlas seguras.
+                            </div>
                         </div>
+
+                        <!-- Sección 2 -->
                         <div class="border border-yellow-300 rounded-lg overflow-hidden">
-                            <div id="e8_header2"
-                                class="p-3 bg-yellow-100 cursor-pointer font-semibold flex justify-between items-center">
-                                Título Sección 2 <span id="e8_icon2">+</span></div>
-                            <div id="e8_content2" class="p-3 bg-white hidden border-t border-yellow-300">Contenido de la
-                                segunda sección.</div>
+                            <div class="p-3 bg-yellow-100 flex justify-between items-center accordion-header"
+                                data-target="e8_content2" data-icon="e8_icon2" data-title="e8_title2" role="button"
+                                tabindex="0" aria-expanded="true">
+                                <a href="#" id="e8_title2" class="accordion-title"
+                                    data-original="Phishing y Correos Sospechosos">Ocultar Phishing y Correos
+                                    Sospechosos</a>
+                                <span id="e8_icon2" class="accordion-icon">–</span>
+                            </div>
+                            <div id="e8_content2" class="p-3 bg-white border-t border-yellow-300 accordion-content">
+                                El <em>phishing</em> es una técnica usada por ciberdelincuentes para engañar a los
+                                usuarios y
+                                robar información confidencial, como contraseñas o datos bancarios. Normalmente se
+                                realiza
+                                mediante correos electrónicos falsos que imitan a empresas reales.
+                                <br><strong>Consejo:</strong> Nunca hagas clic en enlaces sospechosos ni descargues
+                                archivos
+                                de remitentes desconocidos.
+                            </div>
                         </div>
+
+                        <!-- Sección 3 -->
+                        <div class="border border-yellow-300 rounded-lg overflow-hidden">
+                            <div class="p-3 bg-yellow-100 flex justify-between items-center accordion-header"
+                                data-target="e8_content3" data-icon="e8_icon3" data-title="e8_title3" role="button"
+                                tabindex="0" aria-expanded="true">
+                                <a href="#" id="e8_title3" class="accordion-title"
+                                    data-original="Actualizaciones y Software">Ocultar Actualizaciones y Software</a>
+                                <span id="e8_icon3" class="accordion-icon">–</span>
+                            </div>
+                            <div id="e8_content3" class="p-3 bg-white border-t border-yellow-300 accordion-content">
+                                Mantener tu sistema operativo, aplicaciones y antivirus actualizados es fundamental para
+                                protegerte de vulnerabilidades. Los desarrolladores publican actualizaciones para
+                                corregir
+                                errores y tapar brechas de seguridad que podrían ser explotadas por atacantes.
+                                <br><strong>Consejo:</strong> Activa las actualizaciones automáticas siempre que sea
+                                posible.
+                            </div>
+                        </div>
+
                     </div>
+
                     <button onclick="hideExercise()" class="mt-6 text-yellow-500 font-semibold">&larr; Volver al
                         Menú</button>
                 </div>
             </div>
 
+
             <!-- E9: Eventos ratón y teclado -->
             <div id="ejercicio9" class="exercise-view p-8 rounded-xl shadow-2xl">
-                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-lime-500">
+                <div id="e9_info_box"
+                    class="max-w-xl mx-auto p-6 rounded-xl shadow-lg border-t-4 border-lime-500 bg-white transition-colors duration-300">
                     <h2 class="text-2xl font-bold mb-4 text-lime-700">9. Eventos de Ratón y Teclado</h2>
-                    <div class="p-4 bg-lime-50 rounded-lg border space-y-2">
-                        <p class="font-bold">Posición del Ratón:</p>
-                        <p id="e9_mouse_pos" class="font-mono text-sm">X: - | Y: -</p>
+
+                    <div id="e9_message_area" class="p-4 rounded-lg border text-lg font-mono">
+
+                        <div id="e9_mouse_data" class="mb-4">
+                            <h3 class="text-xl font-extrabold mb-1">Ratón</h3>
+                            <p>Navegador [<span id="e9_coord_nav">--</span>]</p>
+                            <p>Página [<span id="e9_coord_page">--</span>]</p>
+                        </div>
+
+                        <div id="e9_keyboard_data">
+                            <h3 class="text-xl font-extrabold mb-1">Teclado</h3>
+                            <p>Carácter [<span id="e9_key_char">--</span>]</p>
+                            <p>Código [<span id="e9_key_code">--</span>]</p>
+                        </div>
+
                     </div>
-                    <div class="mt-4 p-4 bg-lime-50 rounded-lg border space-y-2">
-                        <p class="font-bold">Última Tecla Presionada:</p>
-                        <p id="e9_key" class="font-mono text-sm">Tecla: - | Código: -</p>
-                    </div>
+
                     <button onclick="hideExercise()" class="mt-6 text-lime-500 font-semibold">&larr; Volver al
                         Menú</button>
                 </div>
             </div>
+
 
             <!-- E10: Análisis de texto -->
             <div id="ejercicio10" class="exercise-view p-8 rounded-xl shadow-2xl">

@@ -1,31 +1,47 @@
-// js/ejercicio9.js: Lógica para Eventos de Ratón y Teclado
+// js/ejercicio9.js — Eventos de Ratón y Teclado 
+
+const COLOR_MOUSE_MOVE = '#FFFFFF'; // Blanco
+const COLOR_MOUSE_DOWN = '#FFFFCC'; // Amarillo
+const COLOR_KEY_DOWN = '#CCE6FF';   // Azul
+
+const INFO_BOX = document.getElementById('e9_info_box');
+const MOUSE_TITLE = document.querySelector('#e9_mouse_data h3');
+const KEY_TITLE = document.querySelector('#e9_keyboard_data h3');
+const COORD_NAV = document.getElementById('e9_coord_nav');
+const COORD_PAGE = document.getElementById('e9_coord_page');
+const KEY_CHAR = document.getElementById('e9_key_char');
+const KEY_CODE = document.getElementById('e9_key_code');
+
+document.onmousemove = (e) => {
+    MOUSE_TITLE.textContent = "Ratón 🖱️";
+    KEY_TITLE.textContent = "Teclado";
+
+    COORD_NAV.textContent = `${e.clientX}, ${e.clientY}`;
+    COORD_PAGE.textContent = `${e.pageX}, ${e.pageY}`;
+
+    INFO_BOX.style.backgroundColor = COLOR_MOUSE_MOVE;
+};
+
+document.onmousedown = () => {
+    INFO_BOX.style.backgroundColor = COLOR_MOUSE_DOWN;
+};
+
+
+document.onkeydown = (e) => {
+    MOUSE_TITLE.textContent = "Ratón";
+    KEY_TITLE.textContent = "Teclado ⌨️";
+
+    KEY_CHAR.textContent = e.key;
+    KEY_CODE.textContent = e.code; 
+
+
+    INFO_BOX.style.backgroundColor = COLOR_KEY_DOWN;
+};
 
 export function init_ejercicio9() {
-    const mousePosDisplay = document.getElementById('e9_mouse_pos');
-    const keyDisplay = document.getElementById('e9_key');
-    const container = document.getElementById('ejercicio9');
-
-    // Función de manejo del ratón (guardada en window para limpieza)
-    window.e9_handleMouseMove = (e) => {
-        const rect = container.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        // Solo actualizar si el ratón está dentro del área de la vista
-        if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
-            mousePosDisplay.textContent = `X: ${Math.round(x)} | Y: ${Math.round(y)}`;
-        }
-    };
-
-    // Función de manejo del teclado (guardada en window para limpieza)
-    window.e9_handleKeyDown = (e) => {
-        keyDisplay.textContent = `Tecla: ${e.key} | Código: ${e.code}`;
-    };
-
-    // Añadir listeners globales
-    document.addEventListener('mousemove', window.e9_handleMouseMove);
-    document.addEventListener('keydown', window.e9_handleKeyDown);
-
-    mousePosDisplay.textContent = 'X: - | Y: - (Mueve el ratón)';
-    keyDisplay.textContent = 'Tecla: - | Código: - (Presiona una tecla)';
+    INFO_BOX.style.backgroundColor = COLOR_MOUSE_MOVE;
+    COORD_NAV.textContent = "--";
+    COORD_PAGE.textContent = "--";
+    KEY_CHAR.textContent = "--";
+    KEY_CODE.textContent = "--";
 }
