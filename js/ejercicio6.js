@@ -1,19 +1,17 @@
-// js/ejercicio6.js: Lógica para Mostrar/Ocultar Texto
-
 export function init_ejercicio6() {
-    const btn = document.getElementById('e6_toggle');
-    const textEl = document.getElementById('e6_text');
+    const readMoreLink = document.getElementById('e6_read_more');
+    const fullText = document.getElementById('e6_full_text');
 
-    // Asegurar estado inicial (mostrado)
-    textEl.classList.remove('opacity-0', 'h-0');
-    textEl.classList.add('p-4');
-    btn.textContent = 'Ocultar Texto';
+ 
+    if (readMoreLink && fullText) {
+        fullText.classList.add('hidden');      // Oculta el texto completo
+        readMoreLink.style.display = 'inline'; // Vuelve a mostrar el enlace
+    }
 
-    btn.onclick = () => {
-        const isHidden = textEl.classList.toggle('opacity-0');
-        textEl.classList.toggle('h-0', isHidden); // Oculta altura para evitar espacio
-        textEl.classList.toggle('p-4', !isHidden); // Restaura padding
 
-        btn.textContent = isHidden ? 'Mostrar Texto' : 'Ocultar Texto';
+    readMoreLink.onclick = (e) => {
+        e.preventDefault();       // Evita que el enlace navegue
+        fullText.classList.remove('hidden'); // Muestra el texto completo
+        readMoreLink.style.display = 'none'; // Oculta el enlace después de pulsarlo
     };
 }

@@ -32,7 +32,7 @@ document.onkeydown = (e) => {
     KEY_TITLE.textContent = "Teclado ⌨️";
 
     KEY_CHAR.textContent = e.key;
-    KEY_CODE.textContent = e.code; 
+    KEY_CODE.textContent = e.keyCode; 
 
 
     INFO_BOX.style.backgroundColor = COLOR_KEY_DOWN;

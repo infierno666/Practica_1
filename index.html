@@ -11,7 +11,10 @@
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
@@ -77,6 +80,10 @@
         #e9_info_box span {
             font-weight: bold;
             color: #0077cc;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -147,14 +154,49 @@
     <div id="main-interface" class="min-h-screen p-4 md:p-8 relative">
         <header class="bg-gray-50 py-16 border-b border-gray-200">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-5xl md:text-6xl font-black text-indigo-700 mb-4 neon-glow">
+
+                <h1 class="text-5xl md:text-6xl font-black text-indigo-700 mb-6 neon-glow">
                     Práctica Desarrollada para Diseño Web II
                 </h1>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
-                    Este conjunto de 12 ejercicios interactivos fue realizado en grupo como práctica para la materia de
-                    Diseño Web II. Para interactuar, simplemente haz clic en cualquier tarjeta y el ejercicio se
-                    activará dentro de un entorno modular.
+
+                <p class="text-lg text-gray-700 mb-4 max-w-3xl mx-auto">
+                    Este proyecto representa un <strong>conjunto integral de 12 ejercicios interactivos</strong>
+                    diseñados específicamente para la materia de Diseño Web II. Su propósito principal es consolidar los
+                    conocimientos adquiridos en el desarrollo de interfaces dinámicas y la manipulación del DOM,
+                    poniendo especial énfasis en la usabilidad y la experiencia del usuario.
                 </p>
+
+                <p class="text-lg text-gray-700 mb-4 max-w-3xl mx-auto">
+                    La práctica fue realizada en grupo, fomentando la colaboración y la aplicación de metodologías
+                    ágiles para la resolución de problemas complejos. Para experimentar cada solución, simplemente haz
+                    <strong>clic en cualquiera de las tarjetas del catálogo</strong>. Esto activará el ejercicio
+                    correspondiente dentro de un entorno modular, aislado del resto de la interfaz.
+                </p>
+
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                    <span class="font-bold text-red-600">NOTA:</span> Los siguientes enlaces son solo de
+                    <strong>demostración</strong> y están conceptualmente ligados al <strong>Ejercicio 5 (Información
+                        del DOM)</strong>.
+                    <br><br>
+                    <span class="inline-flex items-center space-x-4">
+                        <a href="#"
+                            class="text-indigo-600 hover:text-indigo-800 font-semibold transition duration-150 ease-in-out underline underline-offset-4">
+                            Ver Propiedades del DOM
+                        </a>
+                        <span class="text-gray-400">|</span>
+                        <a href="https://developer.mozilla.org/es/docs/Web/API/Document_Object_Model" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-indigo-600 hover:text-indigo-800 font-semibold transition duration-150 ease-in-out underline underline-offset-4">
+                            Documentación MDN
+                        </a>
+                        <span class="text-gray-400">|</span>
+                        <a href="#"
+                            class="text-indigo-600 hover:text-indigo-800 font-semibold transition duration-150 ease-in-out underline underline-offset-4">
+                            Revisión de Objetos
+                        </a>
+                    </span>
+                </p>
+
             </div>
         </header>
 
@@ -300,7 +342,7 @@
                     </div>
                     <div class="flex-grow">
                         <span class="text-xs font-light opacity-80 block">Ej. 06</span>
-                        <h4 class="text-lg font-bold">Mostrar y Ocultar</h4>
+                        <h4 class="text-lg font-bold">Mostrar Texto</h4>
                         <p class="text-sm opacity-90 font-light hidden sm:block">Controla la visibilidad de elementos
                             HTML
                             con clicks.</p>
@@ -540,46 +582,144 @@ if ((numero1 + 1) < numero2) {
             <!-- E4: Análisis de Array -->
             <div id="ejercicio4" class="exercise-view p-8 rounded-xl shadow-2xl">
                 <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-pink-500">
-                    <h2 class="text-2xl font-bold mb-4 text-pink-700">4. Análisis de Array</h2>
-                    <p class="text-gray-600 mb-4">Array de ejemplo: [10, 20, 35, 15, 5]</p>
-                    <button id="e4_analyze" class="w-full bg-pink-600 text-white p-3 rounded-lg font-bold">Ejecutar
-                        Análisis</button>
-                    <div class="mt-4 p-3 bg-pink-50 rounded-lg border space-y-2">
-                        <p id="e4_sum" class="font-medium">Suma: -</p>
-                        <p id="e4_average" class="font-medium">Promedio: -</p>
+                    <h2 class="text-2xl font-bold mb-4 text-pink-700 flex items-center gap-2">
+                        <i data-lucide="list-checks" class="w-6 h-6 text-pink-600"></i>
+                        4. Análisis de Array
+                    </h2>
+
+                    <p class="text-gray-600 mb-4">
+                        Array de ejemplo:
+                        <span class="font-mono bg-pink-50 px-2 py-1 rounded">[true, 5, false, "hola", "adios", 2]</span>
+                    </p>
+
+                    <button id="e4_analyze"
+                        class="w-full flex items-center justify-center gap-2 bg-pink-600 text-white p-3 rounded-lg font-bold hover:bg-pink-700 transition">
+                        <i data-lucide="play" class="w-5 h-5"></i>
+                        Ejecutar Análisis
+                    </button>
+
+                    <div class="mt-6 p-4 bg-pink-50 rounded-lg border space-y-3 text-gray-800">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="type" class="w-5 h-5 text-pink-600"></i>
+                            <p id="e4_text_comparison" class="font-medium">1. Texto mayor: -</p>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="toggle-left" class="w-5 h-5 text-pink-600"></i>
+                            <p id="e4_booleans" class="font-medium">2. Booleanos: -</p>
+                        </div>
+
+                        <div class="flex items-start gap-2">
+                            <i data-lucide="calculator" class="w-5 h-5 text-pink-600 mt-1"></i>
+                            <div id="e4_operations" class="font-medium space-y-1">
+                                <p>3. Operaciones numéricas:</p>
+                                <ul class="list-disc ml-6 space-y-1 text-sm text-gray-700" id="e4_math_results">
+                                    <li>-</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <button onclick="hideExercise()" class="mt-6 text-pink-500 font-semibold">&larr; Volver al
-                        Menú</button>
+
+                    <button onclick="hideExercise()"
+                        class="mt-6 text-pink-500 font-semibold flex items-center gap-1 hover:underline">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver al Menú
+                    </button>
                 </div>
             </div>
 
-            <!-- E5: Info DOM -->
+
+            <!-- E5: Análisis del DOM -->
             <div id="ejercicio5" class="exercise-view p-8 rounded-xl shadow-2xl">
                 <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500">
-                    <h2 class="text-2xl font-bold mb-4 text-red-700">5. Información del DOM y Ventana</h2>
-                    <button id="e5_refresh"
-                        class="w-full bg-red-600 text-white p-3 rounded-lg font-bold mb-4">Actualizar
-                        Información</button>
-                    <div class="p-3 bg-red-50 rounded-lg border space-y-2">
-                        <p id="e5_width" class="font-medium">Ancho de la Ventana: -</p>
-                        <p id="e5_height" class="font-medium">Alto de la Ventana: -</p>
-                        <p id="e5_url" class="text-sm font-medium break-all">URL Actual: -</p>
+                    <h2 class="text-2xl font-bold mb-4 text-red-700 flex items-center gap-2">
+                        <i data-lucide="globe" class="text-red-600 w-6 h-6"></i>
+                        5. Análisis del DOM
+                    </h2>
+
+                    <p class="text-gray-600 mb-4">
+                        Este ejercicio analiza los enlaces (<code>&lt;a&gt;</code>) presentes en la página.
+                    </p>
+
+                    <button id="e5_analyze"
+                        class="w-full bg-red-600 text-white p-3 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-red-700 transition">
+                        <i data-lucide="search" class="w-5 h-5"></i> Analizar Página
+                    </button>
+
+                    <div class="mt-4 p-4 bg-red-50 rounded-lg border space-y-3">
+                        <p id="e5_total_links" class="font-medium flex items-center gap-2">
+                            <i data-lucide="link" class="text-red-600 w-5 h-5"></i> Número total de enlaces: -
+                        </p>
+                        <p id="e5_last_link" class="font-medium flex items-center gap-2">
+                            <i data-lucide="corner-down-left" class="text-red-600 w-5 h-5"></i> Penúltimo enlace: -
+                        </p>
+                        <p id="e5_paragraph_links" class="font-medium flex items-center gap-2">
+                            <i data-lucide="file-text" class="text-red-600 w-5 h-5"></i> Enlaces en el tercer párrafo: -
+                        </p>
                     </div>
-                    <button onclick="hideExercise()" class="mt-6 text-red-500 font-semibold">&larr; Volver al
-                        Menú</button>
+
+                    <button onclick="hideExercise()" class="mt-6 text-red-500 font-semibold flex items-center gap-1">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver al Menú
+                    </button>
                 </div>
             </div>
+
 
             <!-- E6: Mostrar/Ocultar texto -->
             <div id="ejercicio6" class="exercise-view p-8 rounded-xl shadow-2xl">
-                <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
-                    <h2 class="text-2xl font-bold mb-4 text-orange-700">6. Mostrar / Ocultar Texto</h2>
-                    <button id="e6_toggle" class="w-full bg-orange-600 text-white p-3 rounded-lg font-bold mb-4">Ocultar
-                        Texto</button>
-                    <p id="e6_text" class="p-4 bg-orange-50 rounded-lg border transition-opacity duration-300">Este
-                        texto se puede ocultar y mostrar.</p>
-                    <button onclick="hideExercise()" class="mt-6 text-orange-500 font-semibold">&larr; Volver al
-                        Menú</button>
+                <div
+                    class="max-w-3xl mx-auto bg-white p-8 md:p-10 rounded-2xl shadow-2xl border-t-4 border-green-500 transition duration-300 transform hover:shadow-green-300/50">
+
+                    <h2 class="text-3xl font-extrabold mb-2 text-gray-800 border-b pb-2 border-green-200">
+                        6. Despliegue de Contenido: Ciberseguridad
+                    </h2>
+
+                    <div class="text-gray-600 leading-relaxed mt-6 text-base">
+                        <p class="mb-3">
+                            La <strong>Ciberseguridad</strong> es un pilar fundamental en la era digital, abarcando el
+                            conjunto de
+                            herramientas, políticas y prácticas destinadas a proteger la información y los sistemas. Es
+                            la primera línea
+                            de defensa contra amenazas en evolución constante.
+                            <a href="#" id="e6_read_more"
+                                class="text-green-600 font-bold hover:text-green-700 transition duration-150 ease-in-out cursor-pointer inline-block mt-2">
+                                Continuar leyendo sobre defensa digital...
+                            </a>
+                        </p>
+
+                        <p id="e6_full_text"
+                            class="hidden border-l-4 border-green-500 pl-4 pt-2 text-gray-800 bg-green-50 p-3 rounded-md">
+                            La ciberseguridad no es un producto, sino un <strong>proceso continuo</strong> que implica
+                            proteger
+                            sistemas, redes y programas frente a accesos no autorizados, ataques digitales maliciosos y
+                            corrupción
+                            de datos. Los ciberdelincuentes modernos están altamente organizados e intentan
+                            constantemente explotar
+                            vulnerabilidades para acceder a información sensible, alterar datos críticos o interrumpir
+                            servicios
+                            esenciales.
+                            <br><br>
+                            Implementar una estrategia robusta implica varias capas de protección: el uso de
+                            <strong>contraseñas robustas y gestión de accesos (IAM)</strong>, mantener todo el software
+                            y sistemas
+                            operativos <strong>actualizados</strong> (parches de seguridad), la instalación de
+                            *firewalls* y
+                            soluciones antivirus avanzadas, y la clave de todo: la <strong>educación del
+                                usuario</strong>. La mayoría
+                            de los incidentes comienzan con errores humanos, como caer en trampas de *phishing* o usar
+                            dispositivos
+                            inseguros. Garantizar la seguridad de la información es un compromiso colectivo.
+                        </p>
+                    </div>
+
+                    <button onclick="hideExercise()"
+                        class="mt-8 px-4 py-2 bg-gray-100 text-gray-600 rounded-lg border border-gray-300 hover:bg-gray-200 hover:text-gray-800 font-semibold transition duration-150 ease-in-out flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
+                        </svg>
+                        Volver al Catálogo
+                    </button>
                 </div>
             </div>
 
@@ -757,8 +897,37 @@ if ((numero1 + 1) < numero2) {
             </div>
 
         </div>
-        <!-- Fin Contenedor de Vistas -->
+        <section class="mt-10 mb-10">
+            <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-wrap gap-12 justify-center">
 
+                    <a href="https://google.com" target="_blank" rel="noopener noreferrer"
+                        class="flex flex-col items-center text-gray-700 hover:text-blue-700 transition duration-200 ease-in-out transform hover:scale-105">
+                        <i class="fab fa-google text-4xl text-blue-600"></i>
+                        <span class="mt-2 text-sm font-medium">Google</span>
+                    </a>
+
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
+                        class="flex flex-col items-center text-gray-700 hover:text-red-700 transition duration-200 ease-in-out transform hover:scale-105">
+                        <i class="fab fa-youtube text-4xl text-red-600"></i>
+                        <span class="mt-2 text-sm font-medium">YouTube</span>
+                    </a>
+
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                        class="flex flex-col items-center text-gray-700 hover:text-purple-700 transition duration-200 ease-in-out transform hover:scale-105">
+                        <i class="fab fa-github text-4xl text-black"></i> <span
+                            class="mt-2 text-sm font-medium">GitHub</span>
+                    </a>
+
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                        class="flex flex-col items-center text-gray-700 hover:text-sky-600 transition duration-200 ease-in-out transform hover:scale-105">
+                        <i class="fab fa-twitter text-4xl text-black"></i> <span
+                            class="mt-2 text-sm font-medium">Twitter (X)</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
     </div>
     <!-- 3. Footer (app-footer) -->
     <footer class="bg-gray-800 text-gray-300 py-6 mt-12">
